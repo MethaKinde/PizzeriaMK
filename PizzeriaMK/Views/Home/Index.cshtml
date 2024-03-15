@@ -1,0 +1,46 @@
+﻿@model IEnumerable<PizzeriaMK.Models.Product>
+
+@{
+    ViewBag.Title = "HomePage";
+}
+
+@section styles {
+    <style>
+        .card:hover {
+            box-shadow: 0 0 10px #b5b5b5;
+            transform: scale(1.05);
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+    </style>
+}
+
+@if (TempData["OrderSuccess"] != null)
+{
+    <div class="alert alert-success" role="alert">
+        L'ordine è stato effettuato con successo!
+    </div>
+}
+
+<div class="p-5 text-white bg-dark text-center">
+    <h1>Benvenuto alla Pizzeria Di MK!</h1>
+</div>
+
+
+<main>
+    <div class="row g-3 justify-content-evenly mt-2">
+        @foreach (var item in Model)
+        {
+            <div class="card" style="width: 18rem;">
+                <img src=@item.ProductImage class="card-img-top mt-2" alt="..." style="height: 200px;">
+                <div class="card-body">
+                    <h4 class="card-title">@item.ProductName</h4>
+                    <p class="card-text">@item.Ingredients</p>
+                </div>
+                <h5 class="card-text mt-auto mx-3">@item.ProductPrice €</h5>
+                <div class="text-end">
+                    @Html.ActionLink("Aggiungi all'ordine", "Details", "Products", new { id = item.ProductId }, new { @class = "btn btn-primary mt-auto mb-3 m-2" })
+                </div>
+            </div>
+        }
+    </div>
+</main>

@@ -1,0 +1,64 @@
+﻿@model IEnumerable<PizzeriaMK.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductImage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PreparationTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ingredients)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Category)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                <img src=@item.ProductImage alt="" style="width: 150px; max-height: 100px">
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PreparationTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ingredients)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ProductId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ProductId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ProductId })
+            </td>
+        </tr>
+    }
+
+</table>
